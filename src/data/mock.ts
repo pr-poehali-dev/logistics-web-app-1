@@ -1,0 +1,148 @@
+export type UserRole = 'logist' | 'manager' | 'director';
+
+export interface User {
+  id: string;
+  name: string;
+  email: string;
+  role: UserRole;
+  password: string;
+}
+
+export const USERS: User[] = [
+  { id: '1', name: 'Алексей Петров', email: 'logist@polarstar.ru', role: 'logist', password: '123456' },
+  { id: '2', name: 'Марина Соколова', email: 'manager@polarstar.ru', role: 'manager', password: '123456' },
+  { id: '3', name: 'Игорь Директоров', email: 'director@polarstar.ru', role: 'director', password: '123456' },
+];
+
+export type EquipmentStatus = 'checked' | 'unchecked' | 'broken';
+export type ContainerType = 'container' | 'dgk' | 'genset';
+
+export interface Equipment {
+  id: string;
+  number: string;
+  type: ContainerType;
+  status: EquipmentStatus;
+  location: string;
+  lastCheck: string;
+  comment: string;
+}
+
+export const EQUIPMENT: Equipment[] = [
+  { id: 'e1', number: 'TCKU3456789', type: 'container', status: 'checked', location: 'ПИК', lastCheck: '2026-02-20', comment: '' },
+  { id: 'e2', number: 'CRXU7890123', type: 'container', status: 'checked', location: 'ДТК', lastCheck: '2026-02-18', comment: '' },
+  { id: 'e3', number: 'MSCU4561234', type: 'container', status: 'unchecked', location: 'Гамбург', lastCheck: '2026-01-15', comment: 'Требует осмотра' },
+  { id: 'e4', number: 'GESU1234567', type: 'container', status: 'broken', location: 'ПИК', lastCheck: '2026-02-10', comment: 'Неисправен термостат' },
+  { id: 'e5', number: 'СVIU8901234', type: 'container', status: 'checked', location: 'ДТК', lastCheck: '2026-02-22', comment: '' },
+  { id: 'e6', number: 'DGK-001', type: 'dgk', status: 'checked', location: 'ПИК', lastCheck: '2026-02-19', comment: '' },
+  { id: 'e7', number: 'DGK-002', type: 'dgk', status: 'unchecked', location: 'ДТК', lastCheck: '2026-01-28', comment: '' },
+  { id: 'e8', number: 'EGK-001', type: 'dgk', status: 'checked', location: 'Гамбург', lastCheck: '2026-02-15', comment: '' },
+  { id: 'e9', number: 'GEN-001', type: 'genset', status: 'checked', location: 'ПИК', lastCheck: '2026-02-21', comment: '' },
+  { id: 'e10', number: 'GEN-002', type: 'genset', status: 'broken', location: 'ДТК', lastCheck: '2026-02-05', comment: 'Замена аккумулятора' },
+  { id: 'e11', number: 'TCKU9876543', type: 'container', status: 'checked', location: 'ПИК', lastCheck: '2026-02-23', comment: '' },
+  { id: 'e12', number: 'HLCU2345678', type: 'container', status: 'checked', location: 'ДТК', lastCheck: '2026-02-17', comment: '' },
+];
+
+export type ShipmentStatus = 'ready' | 'not_ready' | 'in_transit' | 'delivered';
+export type Direction = 'moscow' | 'spb' | 'novosibirsk';
+
+export interface Shipment {
+  id: string;
+  number: string;
+  request: string;
+  client: string;
+  containerNumber: string;
+  footage: string;
+  deliveryDate: string;
+  docsDate: string;
+  inspectionDate: string;
+  places: number;
+  weight: number;
+  cargo: string;
+  tempMode: string;
+  vsdNumber: string;
+  status: ShipmentStatus;
+  terminal: string;
+  destination: string;
+  gngCode: string;
+  etsnvCode: string;
+  requestName: string;
+  comment: string;
+  dtNumber: string;
+  billOfLading: string;
+  subsidy: string;
+  flightId: string;
+  editedBy?: string;
+  editedAt?: string;
+}
+
+export type FlightStatus = 'planned' | 'ready' | 'departed' | 'arrived';
+
+export interface Flight {
+  id: string;
+  number: string;
+  direction: Direction;
+  planDate: string;
+  factDate: string;
+  status: FlightStatus;
+}
+
+export const FLIGHTS: Flight[] = [
+  { id: 'f1', number: 'МСК-2026-001', direction: 'moscow', planDate: '2026-03-01', factDate: '', status: 'planned' },
+  { id: 'f2', number: 'СПБ-2026-001', direction: 'spb', planDate: '2026-03-05', factDate: '', status: 'ready' },
+  { id: 'f3', number: 'НСК-2026-001', direction: 'novosibirsk', planDate: '2026-02-28', factDate: '2026-02-28', status: 'departed' },
+  { id: 'f4', number: 'МСК-2026-002', direction: 'moscow', planDate: '2026-03-10', factDate: '', status: 'planned' },
+];
+
+export const SHIPMENTS: Shipment[] = [
+  { id: 's1', number: '001', request: 'ЗЯ-2026-045', client: 'ООО Фрешпром', containerNumber: 'TCKU3456789', footage: '40HC', deliveryDate: '2026-02-25', docsDate: '2026-02-22', inspectionDate: '2026-02-23', places: 12, weight: 18500, cargo: 'Мясо птицы', tempMode: '-18', vsdNumber: 'ВСД-001234', status: 'ready', terminal: 'ПИК', destination: 'Москва-Товарная', gngCode: '0207', etsnvCode: '011', requestName: 'Мясо замороженное', comment: '', dtNumber: 'ДТ-2026-001', billOfLading: '', subsidy: 'Да', flightId: 'f1' },
+  { id: 's2', number: '002', request: 'ЗЯ-2026-046', client: 'АО МолокоТрейд', containerNumber: 'CRXU7890123', footage: '20', deliveryDate: '2026-02-26', docsDate: '2026-02-23', inspectionDate: '', places: 8, weight: 12000, cargo: 'Сыр твёрдый', tempMode: '+4', vsdNumber: 'ВСД-001235', status: 'not_ready', terminal: 'ДТК', destination: 'Санкт-Петербург-Тов', gngCode: '0406', etsnvCode: '014', requestName: 'Молочная продукция', comment: 'Ожидаем ВСД', dtNumber: '', billOfLading: '', subsidy: 'Нет', flightId: 'f2' },
+  { id: 's3', number: '003', request: 'ЗЯ-2026-047', client: 'ИП Рыбников', containerNumber: 'MSCU4561234', footage: '40', deliveryDate: '2026-02-27', docsDate: '2026-02-24', inspectionDate: '2026-02-24', places: 20, weight: 22000, cargo: 'Рыба мороженная', tempMode: '-20', vsdNumber: 'ВСД-001236', status: 'ready', terminal: 'ПИК', destination: 'Новосибирск-Вост', gngCode: '0302', etsnvCode: '012', requestName: 'Рыба замороженная', comment: '', dtNumber: 'ДТ-2026-003', billOfLading: 'КОН-001', subsidy: 'Да', flightId: 'f3' },
+  { id: 's4', number: '004', request: 'ЗЯ-2026-048', client: 'ООО АгроЭкспорт', containerNumber: 'GESU1234567', footage: '40HC', deliveryDate: '2026-03-02', docsDate: '', inspectionDate: '', places: 16, weight: 19800, cargo: 'Ягода замороженная', tempMode: '-18', vsdNumber: '', status: 'not_ready', terminal: 'ДТК', destination: 'Москва-Товарная', gngCode: '0811', etsnvCode: '018', requestName: 'Плодоовощная', comment: 'Нет документов', dtNumber: '', billOfLading: '', subsidy: 'Нет', flightId: 'f1' },
+  { id: 's5', number: '005', request: 'ЗЯ-2026-049', client: 'ООО СибМит', containerNumber: 'СVIU8901234', footage: '40', deliveryDate: '2026-03-05', docsDate: '2026-03-01', inspectionDate: '', places: 14, weight: 16500, cargo: 'Говядина', tempMode: '-18', vsdNumber: 'ВСД-001237', status: 'not_ready', terminal: 'ПИК', destination: 'Новосибирск-Вост', gngCode: '0201', etsnvCode: '011', requestName: 'Мясо крупного скота', comment: '', dtNumber: '', billOfLading: '', subsidy: 'Да', flightId: 'f4' },
+  { id: 's6', number: '006', request: 'ЗЯ-2026-050', client: 'ООО ПродИмпорт', containerNumber: 'TCKU9876543', footage: '20', deliveryDate: '2026-03-06', docsDate: '2026-03-03', inspectionDate: '2026-03-04', places: 10, weight: 11000, cargo: 'Масло сливочное', tempMode: '+4', vsdNumber: 'ВСД-001238', status: 'ready', terminal: 'ДТК', destination: 'Санкт-Петербург-Тов', gngCode: '0405', etsnvCode: '014', requestName: 'Молочный жир', comment: '', dtNumber: 'ДТ-2026-006', billOfLading: '', subsidy: 'Нет', flightId: 'f2' },
+];
+
+export const TERMINALS = ['ПИК', 'ДТК', 'Гамбург', 'Восточный', 'Новороссийск'];
+
+export const STATUSES_LABEL: Record<ShipmentStatus, string> = {
+  ready: 'Готов к отправке',
+  not_ready: 'Не готов',
+  in_transit: 'В пути',
+  delivered: 'Доставлен',
+};
+
+export const DIRECTIONS_LABEL: Record<Direction, string> = {
+  moscow: 'Москва',
+  spb: 'Санкт-Петербург',
+  novosibirsk: 'Новосибирск',
+};
+
+export const FLIGHT_STATUS_LABEL: Record<FlightStatus, string> = {
+  planned: 'Запланирован',
+  ready: 'Готов',
+  departed: 'Отправлен',
+  arrived: 'Прибыл',
+};
+
+export const EQUIPMENT_STATUS_LABEL: Record<EquipmentStatus, string> = {
+  checked: 'Проверен',
+  unchecked: 'Не проверен',
+  broken: 'Неисправен',
+};
+
+export type ActionLog = {
+  id: string;
+  userId: string;
+  userName: string;
+  action: string;
+  entity: string;
+  entityId: string;
+  timestamp: string;
+};
+
+export const ACTION_LOGS: ActionLog[] = [
+  { id: 'l1', userId: '1', userName: 'Алексей Петров', action: 'Изменён статус', entity: 'Отправка', entityId: 's1', timestamp: '2026-02-23 09:14' },
+  { id: 'l2', userId: '2', userName: 'Марина Соколова', action: 'Создан рейс', entity: 'Рейс', entityId: 'f2', timestamp: '2026-02-23 08:30' },
+  { id: 'l3', userId: '1', userName: 'Алексей Петров', action: 'Обновлены документы', entity: 'Отправка', entityId: 's3', timestamp: '2026-02-22 17:45' },
+  { id: 'l4', userId: '3', userName: 'Игорь Директоров', action: 'Добавлено оборудование', entity: 'Контейнер', entityId: 'e11', timestamp: '2026-02-22 16:00' },
+];
